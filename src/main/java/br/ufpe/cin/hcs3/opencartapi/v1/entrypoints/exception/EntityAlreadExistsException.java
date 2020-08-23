@@ -4,9 +4,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
 public class EntityAlreadExistsException extends ResponseStatusException {
-    private static final String ENTITY_ALREADY_EXISTS_MESSAGE = "%s already exists";
+    private static final String ENTITY_ALREADY_EXISTS_MESSAGE = "this data has already been stored";
 
-    public <T> EntityAlreadExistsException(T entity){
-        super(HttpStatus.BAD_REQUEST, String.format(ENTITY_ALREADY_EXISTS_MESSAGE, entity.getClass().getSimpleName()));
+    public EntityAlreadExistsException(){
+        super(HttpStatus.BAD_REQUEST, ENTITY_ALREADY_EXISTS_MESSAGE);
     }
 }

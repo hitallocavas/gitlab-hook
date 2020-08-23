@@ -3,11 +3,10 @@ package br.ufpe.cin.hcs3.opencartapi.v1.service;
 import br.ufpe.cin.hcs3.opencartapi.v1.domain.entity.Category;
 import br.ufpe.cin.hcs3.opencartapi.v1.domain.repository.CategoryRepository;
 import br.ufpe.cin.hcs3.opencartapi.v1.entrypoints.exception.EntityAlreadExistsException;
+import br.ufpe.cin.hcs3.opencartapi.v1.entrypoints.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -19,14 +18,14 @@ public class CategoryService {
 
     public Category findById(Long id) {
         return this.repository.findById(id)
-                              .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+                              .orElseThrow(NotFoundException::new);
     }
 
     public List<Category> list() {
         var categories = this.repository.findAll();
 
         if(categories.isEmpty()){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+            throw new NotFoundException();
         }
 
         return categories;
@@ -37,7 +36,7 @@ public class CategoryService {
         boolean existsCategoryByDescription = this.repository.existsCategoryByDescription(description);
 
         if (existsCategoryByDescription) {
-            throw new EntityAlreadExistsException(Category.class);
+            throw new EntityAlreadExistsException();
         }
 
         this.repository.save(category);
