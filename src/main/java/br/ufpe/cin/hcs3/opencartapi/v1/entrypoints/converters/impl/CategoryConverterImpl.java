@@ -5,7 +5,7 @@ import br.ufpe.cin.hcs3.opencartapi.v1.entrypoints.converters.IConverter;
 import br.ufpe.cin.hcs3.opencartapi.v1.entrypoints.dto.CategoryDTO;
 import org.springframework.stereotype.Component;
 
-@Component("CategoryConverter")
+@Component
 public class CategoryConverterImpl implements IConverter<Category, CategoryDTO>{
     @Override
     public CategoryDTO toDTO(Category entity) {

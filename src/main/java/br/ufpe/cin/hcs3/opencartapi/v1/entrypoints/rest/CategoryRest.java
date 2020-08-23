@@ -22,7 +22,7 @@ public class CategoryRest {
     private final CategoryConverterImpl categoryConverter;
 
     @PostMapping
-    public ResponseEntity<Object> save(@Valid @RequestBody CategoryDTO categoryDTO){
+    public ResponseEntity save(@Valid @RequestBody CategoryDTO categoryDTO){
         this.categoryService.save(categoryConverter.toEntity(categoryDTO));
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -44,7 +44,7 @@ public class CategoryRest {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deleteById(@PathVariable Long id){
+    public ResponseEntity deleteById(@PathVariable Long id){
         var category = this.categoryService.findById(id);
         this.categoryService.delete(category);
         return ResponseEntity.ok().build();

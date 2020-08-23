@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "OC_CATEGORY")
 @Builder @Getter @Setter @NoArgsConstructor @AllArgsConstructor
 public class Category {
 
