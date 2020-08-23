@@ -31,8 +31,8 @@ public class UserRest {
     public ResponseEntity<List<UserDTO>> getAll(){
         var users = this.userService.list();
         var usersDto =  users.stream()
-                                       .map(userConverter::toDTO)
-                                       .collect(Collectors.toList());
+                             .map(userConverter::toDTO)
+                             .collect(Collectors.toList());
 
         return ResponseEntity.ok(usersDto);
     }
