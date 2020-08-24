@@ -22,8 +22,11 @@ public class HookRest {
 
     @PostMapping
     public ResponseEntity save(@RequestBody Map<String, Object> body){
+        log.info("---------------------- NOVA REQUISIÇÃO ----------------------");
         var json = new Gson().toJson(body);
         log.info(json);
+        log.info("------------------ FIM DA NOVA REQUISIÇÃO -------------------");
+        log.info("");
         return ResponseEntity.ok().build();
     }
 
